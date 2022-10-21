@@ -1,24 +1,24 @@
 const App = () => {
 
   // KESKENERÄINEN!
-  // Bookmark: https://fullstackopen.com/osa1/java_scriptia#tehtavat-1-3-1-5
   
-  const course = "Half Stack application development"
-
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
   const Header = (props) => {
     console.log(props)
@@ -33,8 +33,8 @@ const App = () => {
     console.log(props)
     return (
       <>
-        {parts.map(part => (
-          <p>{props.name} {props.exercises}</p>
+        {course.parts.map(part => (
+          <p key={part.name}>{part.name} {part.exercises}</p>
         ))}
       </>
     )
@@ -44,16 +44,16 @@ const App = () => {
     console.log(props)
     return (
       <>
-        <p>Number of exercises {props.total}</p>
+        <p>Number of exercises {course.parts.reduce((total, currentValue) => total = total + currentValue.exercises, 0)}</p>
       </>
     )
   }
 
   return (
     <div>
-      <Header course={course} />
-      <Content parts={parts.name} />
-      <Total total={null}/>
+      <Header course={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   )
 }
